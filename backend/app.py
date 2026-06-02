@@ -101,9 +101,7 @@ def status():
     return jsonify({
         "project": "AI-Based Fake News Detection System",
         "version": "1.0.0",
-        "student": "Seema | R23DB036",
-        "university": "Reva University",
-        "guide": "Prof. Prabhu G.",
+        "student": "Sumanth ,
         "status": "running",
         "model_loaded": model is not None
     })
