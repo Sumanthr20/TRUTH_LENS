@@ -1,6 +1,5 @@
 # 🔍 TruthLens — AI-Based Fake News Detection System
-
-> **Academic Major Project**  
+ 
 > **Student:**Sumanth
 
 ---
