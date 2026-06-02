@@ -1,7 +1,5 @@
 """
 AI-Based Fake News Detection System
-Training Script - Seema | R23DB036 | Reva University
-Under guidance of Prof. Prabhu G.
 """
 
 import pandas as pd
