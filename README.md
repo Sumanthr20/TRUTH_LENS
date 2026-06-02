@@ -1,9 +1,7 @@
 # 🔍 TruthLens — AI-Based Fake News Detection System
 
 > **Academic Major Project**  
-> **Student:** Seema | **ID:** R23DB036  
-> **University:** Reva University — School of Computer Science and Applications  
-> **Guide:** Prof. Prabhu G.
+> **Student:**Sumanth
 
 ---
 
@@ -182,4 +180,4 @@ Final Result with Confidence + Indicators
 
 ---
 
-*© 2024 Seema | R23DB036 | Reva University | Under guidance of Prof. Prabhu G.*
+*© 2026 Sumanth*
