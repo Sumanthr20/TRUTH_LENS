@@ -2,7 +2,7 @@
 echo.
 echo ============================================================
 echo    TruthLens - AI Fake News Detection System
-echo    Seema ^| R23DB036 ^| Reva University
+echo    Sumanth
 echo ============================================================
 echo.
 
