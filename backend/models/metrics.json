@@ -1,0 +1,12 @@
+{
+  "best_model": "Logistic Regression",
+  "best_accuracy": 1.0,
+  "all_results": {
+    "Logistic Regression": 1.0,
+    "Random Forest": 0.8333333333333334,
+    "Naive Bayes": 0.9444444444444444
+  },
+  "dataset_size": 72,
+  "train_size": 54,
+  "test_size": 18
+}

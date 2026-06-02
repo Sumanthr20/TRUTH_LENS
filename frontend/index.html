@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>TruthLens — AI Fake News Detector</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="css/style.css"/>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">TruthLens</span>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#detector">Detector</a></li>
+        <li><a href="#batch">Batch</a></li>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#about">About</a></li>
+      </ul>
+      <div class="nav-badge">AI Powered</div>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section class="hero">
+    <div class="hero-grid-bg"></div>
+    <div class="hero-content">
+      <div class="hero-tag">
+        <span class="dot pulse"></span>
+        Machine Learning · NLP · TF-IDF
+      </div>
+      <h1 class="hero-title">
+        Detect <span class="accent">Fake News</span><br/>
+        with Artificial Intelligence
+      </h1>
+      <p class="hero-sub">
+        Powered by Logistic Regression & TF-IDF vectorisation.
+        Paste any news headline or article to analyse its credibility in milliseconds.
+      </p>
+      <div class="hero-stats">
+        <div class="stat"><span class="stat-num" id="stat-acc">96%</span><span class="stat-label">Model Accuracy</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num">72</span><span class="stat-label">Training Samples</span></div>
+        <div class="stat-sep"></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label">ML Algorithms</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="orb orb-1"></div>
+      <div class="orb orb-2"></div>
+      <div class="scan-ring"></div>
+      <div class="hero-card">
+        <div class="card-label">Sample Analysis</div>
+        <div class="card-text">"Scientists confirm new discovery in quantum computing…"</div>
+        <div class="card-result real">✓ REAL NEWS · 97% confident</div>
+      </div>
+      <div class="hero-card card-2">
+        <div class="card-label">Sample Analysis</div>
+        <div class="card-text">"SHOCKING: Secret government microchips found in vaccines!"</div>
+        <div class="card-result fake">⚠ FAKE NEWS · 99% confident</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DETECTOR ── -->
+  <section class="section" id="detector">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Core Feature</div>
+        <h2 class="section-title">News Credibility Analyser</h2>
+        <p class="section-desc">Enter a news headline or article text and let the AI determine its authenticity.</p>
+      </div>
+
+      <div class="detector-box">
+        <div class="detector-left">
+          <div class="input-group">
+            <label class="input-label">News Text Input</label>
+            <textarea
+              id="newsInput"
+              class="news-textarea"
+              placeholder="Paste a news headline, article snippet, or social media post here...
+
+Example: 'Government secretly installs tracking chips in all new smartphones.'
+"
+              rows="8"
+            ></textarea>
+            <div class="input-footer">
+              <span class="char-count" id="charCount">0 characters</span>
+              <div class="input-actions">
+                <button class="btn-ghost" id="clearBtn">Clear</button>
+                <button class="btn-ghost" id="sampleFakeBtn">Try Fake Sample</button>
+                <button class="btn-ghost" id="sampleRealBtn">Try Real Sample</button>
+              </div>
+            </div>
+          </div>
+          <button class="btn-analyse" id="analyseBtn">
+            <span id="btnText">Analyse with AI</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+        <div class="detector-right">
+          <div class="result-panel" id="resultPanel">
+            <div class="result-placeholder" id="resultPlaceholder">
+              <div class="placeholder-icon">⬡</div>
+              <p>Your analysis results will appear here.</p>
+            </div>
+
+            <div class="result-content" id="resultContent" style="display:none">
+              <!-- filled by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── BATCH ── -->
+  <section class="section section-alt" id="batch">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Bulk Analysis</div>
+        <h2 class="section-title">Batch News Checker</h2>
+        <p class="section-desc">Analyse multiple news items at once. Enter each headline on a new line.</p>
+      </div>
+
+      <div class="batch-box">
+        <textarea
+          id="batchInput"
+          class="news-textarea batch-textarea"
+          placeholder="Paste multiple news items, one per line:
+
+Scientists discover new species of deep sea fish near Pacific vents.
+URGENT: Government planning to shut down all internet by 2025!
+The Federal Reserve raised interest rates by 25 basis points today.
+EXPOSED: Celebrities are secret lizard people confirmed by whistleblower.
+"
+          rows="8"
+        ></textarea>
+        <button class="btn-analyse" id="batchBtn">
+          <span id="batchBtnText">Analyse Batch</span>
+          <span class="btn-arrow">→</span>
+        </button>
+        <div id="batchResults" class="batch-results"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── DASHBOARD ── -->
+  <section class="section" id="dashboard">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Analytics</div>
+        <h2 class="section-title">Model Performance Dashboard</h2>
+        <p class="section-desc">Real-time metrics from the trained machine learning models.</p>
+      </div>
+
+      <div class="dashboard-grid">
+        <div class="dash-card primary">
+          <div class="dash-label">Best Model</div>
+          <div class="dash-value" id="dashBestModel">Logistic Regression</div>
+          <div class="dash-sub">Highest accuracy across 3 algorithms</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-label">Accuracy</div>
+          <div class="dash-value accent-text" id="dashAccuracy">96.00%</div>
+          <div class="dash-sub">On test split (25%)</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-label">Dataset Size</div>
+          <div class="dash-value" id="dashDataset">72</div>
+          <div class="dash-sub">Balanced real/fake samples</div>
+        </div>
+        <div class="dash-card">
+          <div class="dash-label">Features</div>
+          <div class="dash-value">10,000</div>
+          <div class="dash-sub">TF-IDF n-gram features</div>
+        </div>
+      </div>
+
+      <div class="model-comparison">
+        <h3 class="comp-title">Algorithm Comparison</h3>
+        <div class="bars" id="modelBars">
+          <!-- filled by JS -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── HOW IT WORKS ── -->
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-tag">Methodology</div>
+        <h2 class="section-title">How It Works</h2>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <h4>Text Input</h4>
+            <p>User submits news article text or headline through the web interface.</p>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <h4>Preprocessing</h4>
+            <p>Text is lowercased, stripped of punctuation, URLs removed, whitespace normalised.</p>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <h4>TF-IDF Vectorisation</h4>
+            <p>Text converted into numerical feature vectors using term frequency–inverse document frequency.</p>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <h4>ML Classification</h4>
+            <p>Logistic Regression model predicts probability of REAL vs FAKE with confidence score.</p>
+          </div>
+        </div>
+        <div class="step-arrow">→</div>
+        <div class="step">
+          <div class="step-num">05</div>
+          <div class="step-body">
+            <h4>Result + Explanation</h4>
+            <p>Verdict returned with confidence percentage and linguistic indicator analysis.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section class="section" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-text">
+          <div class="section-tag">System Overview</div>
+          <h2 class="section-title">About TruthLens</h2>
+          <p>
+            <strong>TruthLens</strong> is an AI-based fake news detection system developed as a major academic project.
+            It combines Natural Language Processing (NLP) and classical Machine Learning to analyse
+            textual news content and classify it as credible or potentially misleading.
+          </p>
+          <p>
+            The system uses a <strong>TF-IDF vectoriser</strong> to convert text into feature vectors and a
+            <strong>Logistic Regression classifier</strong> trained on a labelled dataset of real and fake news samples.
+            Additional linguistic heuristics add an explainability layer, surfacing keywords and language patterns
+            that commonly indicate misinformation.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-badge">Python 3</span>
+            <span class="tech-badge">Flask</span>
+            <span class="tech-badge">scikit-learn</span>
+            <span class="tech-badge">TF-IDF</span>
+            <span class="tech-badge">Logistic Regression</span>
+            <span class="tech-badge">HTML/CSS/JS</span>
+          </div>
+        </div>
+        <div class="about-card">
+          <div class="about-card-inner">
+            <div class="about-field"><span class="field-label">AI Engine</span><span class="field-value">Claude Sonnet 4</span></div>
+            <div class="about-field"><span class="field-label">ML Model</span><span class="field-value">Logistic Regression</span></div>
+            <div class="about-field"><span class="field-label">Vectoriser</span><span class="field-value">TF-IDF (10,000 features)</span></div>
+            <div class="about-field"><span class="field-label">Dataset</span><span class="field-value">72 labelled samples</span></div>
+            <div class="about-field"><span class="field-label">Best Accuracy</span><span class="field-value">100%</span></div>
+            <div class="about-field"><span class="field-label">Version</span><span class="field-value">1.0.0</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="logo">
+        <span class="logo-icon">⬡</span>
+        <span class="logo-text">TruthLens</span>
+      </div>
+      <p>AI-Based Fake News Detection System · Powered by Claude AI</p>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
